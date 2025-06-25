@@ -11,25 +11,21 @@ import '../controllers/auth_controller.dart';
 class AuthBinding extends Bindings {
   @override
   void dependencies() {
-    // Core dependencies
-    Get.lazyPut(() => ApiClient('http://testapi.alifouad91.com/api'));
-    Get.lazyPut(() => TokenStorage());
-
     // Data sources
     Get.lazyPut(() => AuthRemoteDatasource(Get.find<ApiClient>()));
-
+    
     // Repositories
     Get.lazyPut<AuthRepository>(() => AuthRepositoryImpl(Get.find<AuthRemoteDatasource>()));
-
+    
     // Use cases
     Get.lazyPut(() => LoginUseCase(Get.find<AuthRepository>()));
     Get.lazyPut(() => RegisterUseCase(Get.find<AuthRepository>()));
-
+    
     // Controllers
     Get.lazyPut(() => AuthController(
-          Get.find<LoginUseCase>(),
-          Get.find<RegisterUseCase>(),
-          Get.find<TokenStorage>(),
-        ));
+      Get.find<LoginUseCase>(),
+      Get.find<RegisterUseCase>(),
+      Get.find<TokenStorage>(),
+    ));
   }
 }

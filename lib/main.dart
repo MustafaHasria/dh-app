@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'core/network/api_client.dart';
+import 'core/storage/token_storage.dart';
 import 'presentation/views/login_view.dart';
 import 'presentation/views/register_view.dart';
 import 'presentation/views/home_view.dart';
@@ -13,6 +15,9 @@ import 'presentation/bindings/user_binding.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
+  
+  // Initialize shared dependencies
+  _initializeSharedDependencies();
 
   // Check token before running the app
   final box = GetStorage();
@@ -27,6 +32,12 @@ void main() async {
   }
 
   runApp(MyApp(initialRoute: isValid ? '/home' : '/login'));
+}
+
+void _initializeSharedDependencies() {
+  // Initialize core dependencies that are shared across all bindings
+  Get.put(ApiClient('http://testapi.alifouad91.com/api'), permanent: true);
+  Get.put(TokenStorage(), permanent: true);
 }
 
 class MyApp extends StatelessWidget {

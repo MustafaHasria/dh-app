@@ -15,26 +15,26 @@ class UserBinding extends Bindings {
   void dependencies() {
     // Data sources
     Get.lazyPut(() => UserRemoteDatasource(Get.find<ApiClient>()));
-
+    
     // Repositories
     Get.lazyPut<UserRepository>(() => UserRepositoryImpl(
-          Get.find<UserRemoteDatasource>(),
-          Get.find<TokenStorage>(),
-        ));
-
+      Get.find<UserRemoteDatasource>(),
+      Get.find<TokenStorage>(),
+    ));
+    
     // Use cases
     Get.lazyPut(() => GetUserUseCase(Get.find<UserRepository>()));
     Get.lazyPut(() => UpdateUserUseCase(Get.find<UserRepository>()));
     Get.lazyPut(() => ChangePasswordUseCase(Get.find<UserRepository>()));
     Get.lazyPut(() => DeleteUserUseCase(Get.find<UserRepository>()));
-
+    
     // Controllers
     Get.lazyPut(() => UserController(
-          Get.find<GetUserUseCase>(),
-          Get.find<UpdateUserUseCase>(),
-          Get.find<ChangePasswordUseCase>(),
-          Get.find<DeleteUserUseCase>(),
-          Get.find<TokenStorage>(),
-        ));
+      Get.find<GetUserUseCase>(),
+      Get.find<UpdateUserUseCase>(),
+      Get.find<ChangePasswordUseCase>(),
+      Get.find<DeleteUserUseCase>(),
+      Get.find<TokenStorage>(),
+    ));
   }
 }

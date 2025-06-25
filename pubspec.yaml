@@ -1,0 +1,38 @@
+name: tdh_app
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  get: ^4.6.5
+  get_storage: ^2.1.1
+  http: ^0.13.6
+  cupertino_icons: ^1.0.8
+  intl_phone_field: ^3.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.0
+
+flutter:
+
+  uses-material-design: true
+
+
+  fonts:
+    - family: AlexandriaFLF
+      fonts:
+        - asset: assets/fonts/AlexandriaFLF.ttf
+        - asset: assets/fonts/AlexandriaFLF-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/AlexandriaFLF-Italic.ttf
+          style: italic
